@@ -9,6 +9,8 @@ function googleLogin () {
     firebase.auth().signInWithPopup(provider).then(result => {
         const user = result.user
         localStorage.setItem("user", user)
+        localStorage.setItem("name",user.displayName)
+        localStorage.setItem("pic",user.photoURL)
         var db = firebase.firestore()
         db.collection('Users').add({
             name: user.displayName
@@ -21,7 +23,7 @@ function googleLogin () {
     }).catch (console.log)
 
 }
- 
+
 function logout () {
     firebase.auth().signOut().then(() => {
         console.log('signed out')

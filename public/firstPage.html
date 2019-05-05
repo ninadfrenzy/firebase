@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <!-- <script>
+        var user = localStorage.getItem("user")
+        if (!user) {
+            window.location.href = "index.html"
+        
+        }
+    </script> -->
+    <script src="auth.js"></script>
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/5.11.1/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -15,16 +23,116 @@
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
 
-
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap CDN and Jquery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+    <style>
+        /* Rating Star Widgets Style */
+.rating-stars ul {
+  list-style-type:none;
+  padding:0;
+  
+  -moz-user-select:none;
+  -webkit-user-select:none;
+}
+.rating-stars ul > li.star {
+  display:inline-block;
+  
+}
+
+/* Idle State of the stars */
+.rating-stars ul > li.star > i.fa {
+  font-size:2.5em; /* Change the size of the stars */
+  color:#ccc; /* Color on idle state */
+}
+
+/* Hover state of the stars */
+.rating-stars ul > li.star.hover > i.fa {
+  color:#FFCC36;
+}
+
+/* Selected state of the stars */
+.rating-stars ul > li.star.selected > i.fa {
+  color:#FF912C;
+}
+#stars{
+    visibility: hidden;
+}
+#btnsubmit{
+    visibility: hidden;
+}
+.focus{
+    background-color: blue;
+}
+    </style>
 </head>
 <body>
-    <button class="btn btn-primary" onclick="logout()">Log me out</button>
-    <script src="baseCase.js"></script>
+    <!-- <button class="btn btn-primary" onclick="logout()">Log me out</button> -->
+    <div class="navbar navbar-light bg-dark row">
+            <div class="col-1">
+                <img src="" alt="" id="profileImage" style="height:30px; width:30px;">
+            </div>
+            <div class="col-8">
+                <h4 id="username" class="text-light"></h4>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-danger" onclick="logout()" style="float:right;">Log out</button>
+            </div>
+        
+        
+        
+    </div>
+    <div class="body">
+        <div class="row justify-content-center" style="padding-top:5%;">
+            <div class="col-4">
+                <div class="card">
+                    <ul id="movieList" style="list-style:none;padding-top:30px;"></ul>
+                    
+                </div>
+                
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-title">
+                        <h3 id="moviename" style="font-weight:bolder"></h3>
+                    </div>
+                    <div class="image" id="moviepic">
+                        
+                    </div>
+                    <p id="desc" style="padding:10px;"></p>
+                    <div class="avg">
+                        <h2 id="ratingAvg"></h2>
+                    </div>
+                    <div class='rating-stars text-center'>
+                            <ul id='stars'>
+                              <li class='star' title='Poor' data-value='1'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' title='Fair' data-value='2'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' title='Good' data-value='3'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' title='Excellent' data-value='4'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                              <li class='star' title='WOW!!!' data-value='5'>
+                                <i class='fa fa-star fa-fw'></i>
+                              </li>
+                            </ul>
+                    </div>
+                    <button id="btnsubmit" class="btn btn-primary">Submit review</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="app.js"></script>
+    <script src="moviePage.js"></script>
 </body>
 </html>
